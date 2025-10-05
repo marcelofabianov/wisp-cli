@@ -1,0 +1,20 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Criação a partir de uma string válida com espaços e maiúsculas
+	email, err := wisp.NewEmail("  TEST@Example.COM  ")
+	if err != nil {
+		fmt.Printf("Erro inesperado: %v\n", err)
+	} else {
+		fmt.Printf("E-mail normalizado: %s\n\n", email)
+	}
+
+	// Tentativa com e-mail inválido
+	fmt.Println("Tentando criar com 'invalid-email'...")
+	_, err = wisp.NewEmail("invalid-email")
+	if err != nil {
+		fmt.Printf("  -> Erro esperado recebido: %v\n", err)
+	}
+}

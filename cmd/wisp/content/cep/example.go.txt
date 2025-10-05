@@ -1,0 +1,11 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	cep, _ := wisp.NewCEP(" 74835-030 ")
+
+	fmt.Printf("CEP criado:\n")
+	fmt.Printf("  - Valor canônico (armazenado): %s\n", cep)
+	fmt.Printf("  - Valor formatado (exibição): %s\n", cep.Formatted())
+}

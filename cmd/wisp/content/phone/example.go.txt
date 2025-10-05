@@ -1,0 +1,19 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Criação de um celular a partir de uma string formatada
+	celular, _ := wisp.NewPhone("+55 (62) 98888-7777")
+	fmt.Printf("Celular criado:\n")
+	fmt.Printf("  - Canônico: %s\n", celular)
+	fmt.Printf("  - Formatado: %s\n", celular.Formatted())
+	fmt.Printf("  - É celular? %t\n\n", celular.IsMobile())
+
+	// Criação de um telefone fixo
+	fixo, _ := wisp.NewPhone("62 3201-8888")
+	fmt.Printf("Fixo criado:\n")
+	fmt.Printf("  - Canônico: %s\n", fixo)
+	fmt.Printf("  - Formatado: %s\n", fixo.Formatted())
+	fmt.Printf("  - É fixo? %t\n", fixo.IsLandline())
+}

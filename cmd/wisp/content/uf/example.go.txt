@@ -1,0 +1,22 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func init() {
+	// Registra as UFs que a aplicação aceita
+	wisp.RegisterUFs("GO", "SP", "RJ")
+}
+
+func main() {
+	// Criação a partir de uma string válida e registrada
+	uf, err := wisp.NewUF("go") // Normaliza para "GO"
+	if err == nil {
+		fmt.Printf("UF criada com sucesso: %s\n", uf)
+	}
+
+	// Tentativa com UF não registrada
+	_, err = wisp.NewUF("MG")
+	if err != nil {
+		fmt.Printf("Erro esperado ao criar UF 'MG': %v\n", err)
+	}
+}
