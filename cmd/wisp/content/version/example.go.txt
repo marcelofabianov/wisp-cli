@@ -1,0 +1,30 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+type Document struct {
+	Title   string
+	Version wisp.Version
+}
+
+func main() {
+	// Um novo documento começa com a versão inicial
+	doc := &Document{
+		Title:   "Versão 1",
+		Version: wisp.InitialVersion(),
+	}
+
+	fmt.Printf("Versão Inicial: %d\n", doc.Version.Int())
+
+	// Simulando uma atualização no documento
+	doc.Title = "Versão 2"
+	doc.Version.Increment() // A versão é incrementada
+
+	fmt.Printf("Versão Após a Primeira Atualização: %d\n", doc.Version.Int())
+
+	// Simulando outra atualização
+	doc.Title = "Versão 3"
+	doc.Version.Increment()
+
+	fmt.Printf("Versão Após a Segunda Atualização: %d\n", doc.Version.Int())
+}

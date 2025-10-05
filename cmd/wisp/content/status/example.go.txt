@@ -1,0 +1,35 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+// Define os status para o contexto de um Pedido
+const (
+	StatusProcessing wisp.Status = "PROCESSING"
+	StatusShipped    wisp.Status = "SHIPPED"
+	StatusDelivered  wisp.Status = "DELIVERED"
+)
+
+func init() {
+	// Registra os status válidos para Pedidos
+	wisp.RegisterStatuses(StatusProcessing, StatusShipped, StatusDelivered)
+}
+
+type Order struct {
+	ID     int
+	Status wisp.Status
+}
+
+func main() {
+	// Cria um status inicial válido
+	initialStatus, _ := wisp.NewStatus("processing")
+
+	order := Order{ID: 123, Status: initialStatus}
+
+	fmt.Printf("Status inicial do Pedido #%d: %s\n\n", order.ID, order.Status)
+
+	// Tenta criar um status inválido (não registrado)
+	_, err := wisp.NewStatus("CANCELED")
+	if err != nil {
+		fmt.Printf("Erro esperado ao criar status 'CANCELED':\n  -> %v\n", err)
+	}
+}

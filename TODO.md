@@ -50,20 +50,20 @@ O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito 
 - [x] 33. Color
 
 ### Medidas e Quantidades
-- [ ] 34. Weight
-- [ ] 35. WeightUnit
-- [ ] 36. Length
-- [ ] 37. LengthUnit
-- [ ] 38. Quantity
-- [ ] 39. Unit
+- [x] 34. Weight
+- [x] 35. WeightUnit
+- [x] 36. Length
+- [x] 37. LengthUnit
+- [x] 38. Quantity
+- [x] 39. Unit
 
 ### Auditoria e Controle
-- [ ] 40. Audit
-- [ ] 41. AuditUser
-- [ ] 42. Version
+- [x] 40. Audit
+- [x] 41. AuditUser
+- [x] 42. Version
 
 ### Tipos Genéricos e Extensíveis
-- [ ] 43. Role
+- [x] 43. Role
 - [ ] 44. Status
 - [ ] 45. Flag[T]
 - [ ] 46. Preferences

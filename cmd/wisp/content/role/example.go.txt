@@ -1,0 +1,29 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+// Define as constantes de papéis para o domínio da aplicação
+const (
+	RoleAdmin   wisp.Role = "ADMIN"
+	RoleStudent wisp.Role = "STUDENT"
+)
+
+func init() {
+	// Registra os papéis na inicialização
+	wisp.RegisterRoles(RoleAdmin, RoleStudent)
+}
+
+func main() {
+	// Tenta criar um papel válido
+	role, err := wisp.NewRole("student") // Normalização é automática
+	if err == nil {
+		fmt.Printf("Papel '%s' criado com sucesso.\n", role)
+		fmt.Printf("O papel '%s' é válido? %t\n\n", role, role.IsValid())
+	}
+
+	// Tenta criar um papel não registrado
+	_, err = wisp.NewRole("TEACHER")
+	if err != nil {
+		fmt.Printf("Erro esperado ao criar papel 'TEACHER':\n  -> %v\n", err)
+	}
+}
