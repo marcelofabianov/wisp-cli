@@ -70,13 +70,13 @@ O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito 
 
 ### Tipos de Validação e Controle
 - [x] 47. BoundedValue
-- [ ] 48. MinValue
-- [ ] 49. RangedValue
+- [x] 48. MinValue
+- [x] 49. RangedValue
 
 ### Primitivos Seguros
-- [ ] 50. NonEmptyString
-- [ ] 51. PositiveInt
+- [x] 50. NonEmptyString
+- [x] 51. PositiveInt
 
 ## Objetivo para v1.10.0
 
-- [ ] `wisp-cli` cobrindo `wisp`v1.10.0
+- [x] `wisp-cli` cobrindo `wisp`v1.10.0

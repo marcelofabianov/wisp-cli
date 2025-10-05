@@ -1,0 +1,21 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// A temperatura de um equipamento deve ficar entre 15 e 30 graus.
+	temperatura, _ := wisp.NewRangedValue(20, 15, 30)
+	fmt.Printf("Temperatura inicial: %d°C (Min: %d°C, Máx: %d°C)\n", temperatura.Current(), temperatura.Min(), temperatura.Max())
+
+	// Aumenta a temperatura em 10 graus (sucesso)
+	temperatura, _ = temperatura.Add(10)
+	fmt.Printf("\nAumentou 10°C. Nova temperatura: %d°C\n", temperatura.Current())
+	fmt.Printf("Atingiu o máximo? %t\n", temperatura.IsAtMax())
+
+	// Tenta diminuir 20 graus (falha)
+	fmt.Println("\nTentando diminuir 20°C...")
+	_, err := temperatura.Subtract(20) // 30 - 20 = 10, que é < 15
+	if err != nil {
+		fmt.Printf("  -> Erro esperado: %v\n", err)
+	}
+}

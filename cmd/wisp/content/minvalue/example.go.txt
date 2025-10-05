@@ -1,0 +1,26 @@
+package main
+import "fmt"
+import "errors"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Cria um nível de estoque de segurança com mínimo de 10 unidades.
+	estoque, _ := wisp.NewMinValue(12, 10)
+
+	fmt.Printf("Estoque inicial: %d (Mín: %d)\n", estoque.Current(), estoque.Min())
+
+	// 1. Tenta retirar 2 itens (sucesso)
+	fmt.Println("\nRetirando 2 itens...")
+	estoque, _ = estoque.Subtract(2)
+	fmt.Printf("Estoque atual: %d\n", estoque.Current())
+	fmt.Printf("Está no mínimo? %t\n", estoque.IsAtMin())
+
+	// 2. Tenta retirar mais 1 item (falha)
+	fmt.Println("\nTentando retirar mais 1 item...")
+	_, err := estoque.Subtract(1)
+	if err != nil {
+		if errors.Is(err, wisp.ErrValueSubceedsMin) {
+			fmt.Println("  -> Erro esperado: Estoque não pode ficar abaixo do mínimo!")
+		}
+	}
+}

@@ -1,0 +1,26 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Criação a partir de uma string válida com espaços
+	nome, err := wisp.NewNonEmptyString("  Go Lang  ")
+	if err == nil {
+		// O valor armazenado já está sem os espaços
+		fmt.Printf("String válida criada: '%s'\n\n", nome)
+	}
+
+	// Tentativa com string vazia
+	fmt.Println("Tentando criar com ''...")
+	_, err = wisp.NewNonEmptyString("")
+	if err != nil {
+		fmt.Printf("  -> Erro esperado: %v\n\n", err)
+	}
+
+	// Tentativa com string contendo apenas espaços
+	fmt.Println("Tentando criar com '   '...")
+	_, err = wisp.NewNonEmptyString("   ")
+	if err != nil {
+		fmt.Printf("  -> Erro esperado: %v\n", err)
+	}
+}

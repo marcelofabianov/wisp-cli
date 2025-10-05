@@ -1,0 +1,25 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Criação com um valor válido
+	limiteVagas, err := wisp.NewPositiveInt(50)
+	if err == nil {
+		fmt.Printf("Limite de vagas definido para: %d\n\n", limiteVagas.Int())
+	}
+
+	// Tentativa com valor zero
+	fmt.Println("Tentando criar com 0...")
+	_, err = wisp.NewPositiveInt(0)
+	if err != nil {
+		fmt.Printf("  -> Erro esperado: %v\n\n", err)
+	}
+
+	// Tentativa com valor negativo
+	fmt.Println("Tentando criar com -10...")
+	_, err = wisp.NewPositiveInt(-10)
+	if err != nil {
+		fmt.Printf("  -> Erro esperado: %v\n", err)
+	}
+}
