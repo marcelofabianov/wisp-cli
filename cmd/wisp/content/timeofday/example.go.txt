@@ -1,0 +1,33 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func main() {
+	// Criação a partir de uma string válida
+	horario, err := wisp.ParseTimeOfDay("09:30")
+	if err != nil {
+		log.Fatalf("Falha inesperada: %v", err)
+	}
+
+	fmt.Printf("Horário criado: %s\n", horario.String())
+	fmt.Printf("  - Hora: %d\n", horario.Hour())
+	fmt.Printf("  - Minuto: %d\n\n", horario.Minute())
+
+	// Comparação entre horários
+	outroHorario, _ := wisp.NewTimeOfDay(18, 0)
+
+	fmt.Printf("O horário %s é anterior a %s? %t\n", horario, outroHorario, horario.Before(outroHorario))
+	fmt.Printf("O horário %s é posterior a %s? %t\n\n", horario, outroHorario, horario.After(outroHorario))
+
+	// Tentativa de criação com formato inválido
+	fmt.Println("Tentando criar com o formato '9:30'...")
+	_, err = wisp.ParseTimeOfDay("9:30")
+	if err != nil {
+		fmt.Printf("  -> Erro esperado recebido: %v\n", err)
+	}
+}

@@ -117,6 +117,12 @@ Para mais detalhes, veja: [https://pkg.go.dev/github.com/marcelofabianov/wisp#Mo
 go build -o wisp-cli ./cmd/wisp
 ```
 
+## Versões
+
+A ferramenta `wisp-cli` terá sua versão vinculada as versões do pacote principal `wisp`.
+
+- [v1.10.0](https://github.com/marcelofabianov/wisp/blob/main/releases/v1.10.0.md)
+
 
 ## Licença
 

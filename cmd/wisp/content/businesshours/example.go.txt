@@ -1,0 +1,36 @@
+package main
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func main() {
+	// Define os períodos de funcionamento
+	horarioComercial, _ := wisp.NewTimeRange(wisp.MustNewTimeOfDay(9, 0), wisp.MustNewTimeOfDay(18, 0))
+	horarioSabado, _ := wisp.NewTimeRange(wisp.MustNewTimeOfDay(9, 0), wisp.MustNewTimeOfDay(12, 0))
+
+	// Monta o cronograma da semana
+	schedule := map[wisp.DayOfWeek]wisp.TimeRange{
+		wisp.Monday:    horarioComercial,
+		wisp.Tuesday:   horarioComercial,
+		wisp.Wednesday: horarioComercial,
+		wisp.Thursday:  horarioComercial,
+		wisp.Friday:    horarioComercial,
+		wisp.Saturday:  horarioSabado,
+		// Domingo está omitido, significando que está fechado.
+	}
+
+	horarioDeFuncionamento, _ := wisp.NewBusinessHours(schedule)
+
+	// Verifica alguns horários
+	pontoNoTempo1 := time.Date(2025, 10, 6, 15, 0, 0, 0, time.UTC)  // Segunda-feira, 15:00
+	pontoNoTempo2 := time.Date(2025, 10, 11, 13, 0, 0, 0, time.UTC) // Sábado, 13:00
+	pontoNoTempo3 := time.Date(2025, 10, 12, 11, 0, 0, 0, time.UTC) // Domingo, 11:00
+
+	fmt.Printf("Aberto em %s às 15:00? %t\n", pontoNoTempo1.Weekday(), horarioDeFuncionamento.IsOpen(pontoNoTempo1))
+	fmt.Printf("Aberto em %s às 13:00? %t\n", pontoNoTempo2.Weekday(), horarioDeFuncionamento.IsOpen(pontoNoTempo2))
+	fmt.Printf("Aberto em %s às 11:00? %t\n", pontoNoTempo3.Weekday(), horarioDeFuncionamento.IsOpen(pontoNoTempo3))
+}

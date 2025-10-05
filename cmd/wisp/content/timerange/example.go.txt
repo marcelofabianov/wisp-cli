@@ -1,0 +1,28 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func main() {
+	inicio, _ := wisp.ParseTimeOfDay("09:00")
+	fim, _ := wisp.ParseTimeOfDay("18:00")
+
+	// Cria um período de horário comercial
+	periodoComercial, err := wisp.NewTimeRange(inicio, fim)
+	if err != nil {
+		log.Fatalf("Falha inesperada: %v", err)
+	}
+
+	fmt.Printf("Período comercial definido: %s\n\n", periodoComercial)
+
+	// Horários para verificação
+	horarioDentro, _ := wisp.ParseTimeOfDay("14:30")
+	horarioFora, _ := wisp.ParseTimeOfDay("19:00")
+
+	fmt.Printf("O horário %s está dentro do período comercial? %t\n", horarioDentro, periodoComercial.Contains(horarioDentro))
+	fmt.Printf("O horário %s está dentro do período comercial? %t\n", horarioFora, periodoComercial.Contains(horarioFora))
+}

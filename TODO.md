@@ -4,21 +4,21 @@ O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito 
 
 ## Checklist conforme a `v1.10.0` do `wisp`
 
-## Identificadores
+### Identificadores
 - [x] 1. CPF
 - [x] 2. CNPJ
 - [x] 3. UUID
 - [x] 4. NullableUUID
 - [x] 5. Slug
 
-## Financeiro
+### Financeiro
 - [x] 6. Money
 - [x] 7. Currency
 - [x] 8. Percentage
 - [x] 9. Discount
 - [x] 10. DiscountType
 
-## Temporal
+### Temporal
 - [x] 11. Date
 - [x] 12. DateRange
 - [x] 13. BirthDate
@@ -32,24 +32,24 @@ O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito 
 - [ ] 21. UpdatedAt
 - [ ] 22. NullableTime
 
-## Contato e Endereçamento
+### Contato e Endereçamento
 - [ ] 23. Email
 - [ ] 24. Phone
 - [ ] 25. CEP
 - [ ] 26. UF
 
-## Geolocalização
+### Geolocalização
 - [ ] 27. Latitude
 - [ ] 28. Longitude
 
-## Rede e Tecnologia
+### Rede e Tecnologia
 - [ ] 29. IPAddress
 - [ ] 30. PortNumber
 - [ ] 31. FileExtension
 - [ ] 32. MIMEType
 - [ ] 33. Color
 
-## Medidas e Quantidades
+### Medidas e Quantidades
 - [ ] 34. Weight
 - [ ] 35. WeightUnit
 - [ ] 36. Length
@@ -57,22 +57,26 @@ O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito 
 - [ ] 38. Quantity
 - [ ] 39. Unit
 
-## Auditoria e Controle
+### Auditoria e Controle
 - [ ] 40. Audit
 - [ ] 41. AuditUser
 - [ ] 42. Version
 
-## Tipos Genéricos e Extensíveis
+### Tipos Genéricos e Extensíveis
 - [ ] 43. Role
 - [ ] 44. Status
 - [ ] 45. Flag[T]
 - [ ] 46. Preferences
 
-## Tipos de Validação e Controle
+### Tipos de Validação e Controle
 - [ ] 47. BoundedValue
 - [ ] 48. MinValue
 - [ ] 49. RangedValue
 
-## Primitivos Seguros
+### Primitivos Seguros
 - [ ] 50. NonEmptyString
 - [ ] 51. PositiveInt
+
+## Objetivo para v1.10.0
+
+- [ ] `wisp-cli` cobrindo `wisp`v1.10.0
