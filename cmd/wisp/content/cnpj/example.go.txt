@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func main() {
+	// Exemplo de criação com um CNPJ válido e formatado
+	validCNPJ, err := wisp.NewCNPJ("45.543.915/0001-81")
+	if err != nil {
+		log.Fatalf("Falha inesperada: %v", err)
+	}
+
+	fmt.Printf("CNPJ Válido:\n")
+	fmt.Printf("  - Valor Canônico: %s\n", validCNPJ.String())
+	fmt.Printf("  - Valor Formatado: %s\n\n", validCNPJ.Formatted())
+
+	// Exemplo de tentativa de criação com um CNPJ inválido
+	fmt.Println("Tentando criar com um CNPJ inválido (dígito verificador incorreto)...")
+	_, err = wisp.NewCNPJ("11.222.333/0001-00")
+	if err != nil {
+		fmt.Printf("  -> Erro esperado recebido: %v\n", err)
+	}
+}

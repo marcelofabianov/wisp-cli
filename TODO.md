@@ -1,0 +1,78 @@
+# wisp-cli
+
+O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito e url para cada type do pacote não esta finalizado ainda criamos um checklist para acompanhar a evolução.
+
+## Checklist conforme a v1.10.0
+
+## Identificadores
+- [x] 1. CPF
+- [ ] 2. CNPJ
+- [x] 3. UUID
+- [ ] 4. NullableUUID
+- [ ] 5. Slug
+
+## Financeiro
+- [x] 6. Money
+- [ ] 7. Currency
+- [ ] 8. Percentage
+- [ ] 9. Discount
+- [ ] 10. DiscountType
+
+## Temporal
+- [ ] 11. Date
+- [ ] 12. DateRange
+- [ ] 13. BirthDate
+- [ ] 14. Day
+- [ ] 15. DayOfWeek
+- [ ] 16. TimeOfDay
+- [ ] 17. TimeRange
+- [ ] 18. BusinessHours
+- [ ] 19. Timezone
+- [ ] 20. CreatedAt
+- [ ] 21. UpdatedAt
+- [ ] 22. NullableTime
+
+## Contato e Endereçamento
+- [ ] 23. Email
+- [ ] 24. Phone
+- [ ] 25. CEP
+- [ ] 26. UF
+
+## Geolocalização
+- [ ] 27. Latitude
+- [ ] 28. Longitude
+
+## Rede e Tecnologia
+- [ ] 29. IPAddress
+- [ ] 30. PortNumber
+- [ ] 31. FileExtension
+- [ ] 32. MIMEType
+- [ ] 33. Color
+
+## Medidas e Quantidades
+- [ ] 34. Weight
+- [ ] 35. WeightUnit
+- [ ] 36. Length
+- [ ] 37. LengthUnit
+- [ ] 38. Quantity
+- [ ] 39. Unit
+
+## Auditoria e Controle
+- [ ] 40. Audit
+- [ ] 41. AuditUser
+- [ ] 42. Version
+
+## Tipos Genéricos e Extensíveis
+- [ ] 43. Role
+- [ ] 44. Status
+- [ ] 45. Flag[T]
+- [ ] 46. Preferences
+
+## Tipos de Validação e Controle
+- [ ] 47. BoundedValue
+- [ ] 48. MinValue
+- [ ] 49. RangedValue
+
+## Primitivos Seguros
+- [ ] 50. NonEmptyString
+- [ ] 51. PositiveInt
