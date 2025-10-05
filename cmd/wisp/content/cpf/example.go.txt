@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func main() {
+	// Exemplo de criação com um CPF válido e formatado
+	validCPF, err := wisp.NewCPF("862.226.160-38")
+	if err != nil {
+		log.Fatalf("Falha inesperada: %v", err)
+	}
+
+	fmt.Printf("CPF Válido:\n")
+	fmt.Printf("  - Valor Canônico: %s\n", validCPF.String())
+	fmt.Printf("  - Valor Formatado: %s\n\n", validCPF.Formatted())
+
+	// Exemplo de tentativa de criação com um CPF inválido
+	fmt.Println("Tentando criar com um CPF inválido...")
+	_, err = wisp.NewCPF("111.111.111-11")
+	if err != nil {
+		fmt.Printf("  -> Erro esperado recebido: %v\n", err)
+	}
+}

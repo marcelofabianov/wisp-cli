@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func main() {
+	// Para o exemplo, registramos a moeda BRL.
+	// Em um projeto real, isso estaria no init().
+	wisp.RegisterCurrencies(wisp.BRL)
+
+	// Cria R$ 150,50 (15050 centavos)
+	valor1, _ := wisp.NewMoney(15050, wisp.BRL)
+
+	// Cria R$ 49,50 (4950 centavos)
+	valor2, _ := wisp.NewMoney(4950, wisp.BRL)
+
+	// Operações aritméticas são seguras e imutáveis
+	total, _ := valor1.Add(valor2)
+
+	fmt.Printf("Valor 1: %s\n", valor1.String())
+	fmt.Printf("Valor 2: %s\n", valor2.String())
+	fmt.Printf("Total: %s\n", total.String()) // Esperado: BRL 200.00
+	fmt.Printf("Total em centavos: %d\n", total.Amount())
+}
