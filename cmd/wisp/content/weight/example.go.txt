@@ -1,0 +1,24 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Cria um peso de 1.5 quilogramas
+	peso1, _ := wisp.NewWeight(1.5, wisp.Kilogram)
+
+	// Cria um peso de 500 gramas
+	peso2, _ := wisp.NewWeight(500, wisp.Gram)
+
+	// Soma os dois pesos
+	pesoTotal := peso1.Add(peso2)
+
+	// Converte o total para diferentes unidades para exibição
+	totalEmKg, _ := pesoTotal.In(wisp.Kilogram)
+	totalEmGramas, _ := pesoTotal.In(wisp.Gram)
+	totalEmLibras, _ := pesoTotal.In(wisp.Pound)
+
+	fmt.Printf("Peso 1 (1.5 kg) + Peso 2 (500 g) = Peso Total\n\n")
+	fmt.Printf("Total em Quilogramas: %.3f kg\n", totalEmKg)
+	fmt.Printf("Total em Gramas: %.3f g\n", totalEmGramas)
+	fmt.Printf("Total em Libras: %.3f lb\n", totalEmLibras)
+}

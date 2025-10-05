@@ -1,0 +1,18 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Cria um comprimento de 2.5 metros
+	comprimento, _ := wisp.NewLength(2.5, wisp.Meter)
+
+	// Converte para outras unidades
+	emCm, _ := comprimento.In(wisp.Centimeter)
+	emPes, _ := comprimento.In(wisp.Foot)
+	emPolegadas, _ := comprimento.In(wisp.Inch)
+
+	fmt.Printf("Comprimento original: 2.5 metros\n\n")
+	fmt.Printf("Em Centímetros: %.2f cm\n", emCm)
+	fmt.Printf("Em Pés (ft): %.2f ft\n", emPes)
+	fmt.Printf("Em Polegadas (in): %.2f in\n", emPolegadas)
+}

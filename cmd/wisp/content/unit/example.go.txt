@@ -1,0 +1,22 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+// Define as constantes de unidade para o domínio da aplicação
+const (
+	Kilogram wisp.Unit = "KG"
+	Box      wisp.Unit = "BOX"
+)
+
+func init() {
+	// Registra as unidades na inicialização
+	wisp.RegisterUnits(Kilogram, Box)
+}
+
+func main() {
+	unidade1 := wisp.Unit("KG")
+	unidade2 := wisp.Unit("LITER") // Não registrada
+
+	fmt.Printf("A unidade '%s' é válida no sistema? %t\n", unidade1, unidade1.IsValid())
+	fmt.Printf("A unidade '%s' é válida no sistema? %t\n", unidade2, unidade2.IsValid())
+}
