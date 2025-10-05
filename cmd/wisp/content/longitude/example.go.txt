@@ -1,0 +1,39 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func getHemisphere(lon wisp.Longitude) string {
+	if lon.Float64() > 0 {
+		return "Oriental (Leste)"
+	}
+	if lon.Float64() < 0 {
+		return "Ocidental (Oeste)"
+	}
+	return "Meridiano de Greenwich"
+}
+
+func main() {
+	// Longitude de São Paulo, Brasil (Hemisfério Ocidental)
+	lonSP, err := wisp.NewLongitude(-46.6333)
+	if err != nil {
+		log.Fatalf("Erro inesperado: %v", err)
+	}
+
+	// Longitude de Tóquio, Japão (Hemisfério Oriental)
+	lonTokyo, _ := wisp.NewLongitude(139.6917)
+
+	fmt.Printf("A longitude %f está no Hemisfério: %s\n", lonSP.Float64(), getHemisphere(lonSP))
+	fmt.Printf("A longitude %f está no Hemisfério: %s\n\n", lonTokyo.Float64(), getHemisphere(lonTokyo))
+
+	// Tentativa de criar uma longitude inválida
+	fmt.Println("Tentando criar com Longitude = -181.0...")
+	_, err = wisp.NewLongitude(-181.0)
+	if err != nil {
+		fmt.Printf("  -> Erro esperado recebido: %v\n", err)
+	}
+}

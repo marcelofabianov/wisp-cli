@@ -1,0 +1,39 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func getHemisphere(lat wisp.Latitude) string {
+	if lat.Float64() > 0 {
+		return "Norte"
+	}
+	if lat.Float64() < 0 {
+		return "Sul"
+	}
+	return "Equador"
+}
+
+func main() {
+	// Latitude de São Paulo, Brasil (Hemisfério Sul)
+	latSP, err := wisp.NewLatitude(-23.5505)
+	if err != nil {
+		log.Fatalf("Erro inesperado: %v", err)
+	}
+
+	// Latitude de Nova Iorque, EUA (Hemisfério Norte)
+	latNY, _ := wisp.NewLatitude(40.7128)
+
+	fmt.Printf("A latitude %f está no Hemisfério: %s\n", latSP.Float64(), getHemisphere(latSP))
+	fmt.Printf("A latitude %f está no Hemisfério: %s\n\n", latNY.Float64(), getHemisphere(latNY))
+
+	// Tentativa de criar uma latitude inválida
+	fmt.Println("Tentando criar com Latitude = 91.0...")
+	_, err = wisp.NewLatitude(91.0)
+	if err != nil {
+		fmt.Printf("  -> Erro esperado recebido: %v\n", err)
+	}
+}
