@@ -1,0 +1,50 @@
+package main
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+// Documento com rastreamento de criação e atualização.
+type Document struct {
+	Title     string
+	Content   string
+	CreatedAt wisp.CreatedAt
+	UpdatedAt wisp.UpdatedAt
+}
+
+// NewDocument cria um novo documento.
+func NewDocument(title, content string) *Document {
+	now := wisp.NewCreatedAt()
+	return &Document{
+		Title:     title,
+		Content:   content,
+		CreatedAt: now,
+		UpdatedAt: wisp.UpdatedAt(now.Time()), // Na criação, UpdatedAt é igual a CreatedAt.
+	}
+}
+
+// UpdateContent altera o conteúdo e "toca" o timestamp de atualização.
+func (d *Document) UpdateContent(newContent string) {
+	d.Content = newContent
+	d.UpdatedAt.Touch() // A API Touch() é explícita sobre a intenção.
+}
+
+func main() {
+	fmt.Println("Criando um novo documento...")
+	doc := NewDocument("Rascunho", "Conteúdo inicial.")
+
+	initialUpdateTime := doc.UpdatedAt
+	fmt.Printf("Timestamp inicial (CreatedAt == UpdatedAt): %s\n", initialUpdateTime.Time().Format(time.RFC3339))
+
+	// Simulando uma modificação no documento algum tempo depois...
+	fmt.Println("\nAtualizando o documento...")
+	time.Sleep(10 * time.Millisecond)
+	doc.UpdateContent("Conteúdo final e revisado.")
+
+	finalUpdateTime := doc.UpdatedAt
+	fmt.Printf("Timestamp final (após Touch()): %s\n", finalUpdateTime.Time().Format(time.RFC3339))
+	fmt.Printf("O timestamp de atualização mudou? %t\n", !initialUpdateTime.Time().Equal(finalUpdateTime.Time()))
+}

@@ -1,0 +1,34 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"time"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func init() {
+	// Registra os fusos horários que a aplicação irá suportar.
+	err := wisp.RegisterTimezones("America/Sao_Paulo", "Europe/London", "UTC")
+	if err != nil {
+		log.Fatalf("Falha ao registrar timezones: %v", err)
+	}
+}
+
+func main() {
+	// Um instante no tempo, definido em UTC
+	reuniaoUTC := time.Date(2025, 10, 26, 14, 0, 0, 0, time.UTC)
+
+	// Cria os value objects para os fusos horários
+	fusoSP, _ := wisp.NewTimezone("America/Sao_Paulo") // UTC-3
+	fusoLondres, _ := wisp.NewTimezone("Europe/London") // UTC+0 ou UTC+1 (depende do horário de verão)
+
+	// Converte o mesmo instante para diferentes fusos
+	reuniaoSP := fusoSP.Convert(reuniaoUTC)
+	reuniaoLondres := fusoLondres.Convert(reuniaoUTC)
+
+	fmt.Printf("Horário da reunião em UTC: %s\n", reuniaoUTC.Format(time.RFC1123Z))
+	fmt.Printf("Horário em São Paulo:     %s\n", reuniaoSP.Format(time.RFC1123Z))
+	fmt.Printf("Horário em Londres:       %s\n", reuniaoLondres.Format(time.RFC1123Z))
+}

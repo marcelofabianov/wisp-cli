@@ -1,0 +1,42 @@
+package main
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+// Documento é uma struct simples que usa CreatedAt de forma isolada.
+type Document struct {
+	Title     string
+	Content   string
+	CreatedAt wisp.CreatedAt
+}
+
+// NewDocument é a factory para criar um novo documento.
+func NewDocument(title, content string) *Document {
+	return &Document{
+		Title:     title,
+		Content:   content,
+		CreatedAt: wisp.NewCreatedAt(), // O timestamp de criação é definido aqui e nunca mais alterado.
+	}
+}
+
+func main() {
+	fmt.Println("Criando um novo documento...")
+	doc := NewDocument("Relatório Anual", "Conteúdo inicial.")
+
+	initialCreationTime := doc.CreatedAt
+
+	fmt.Printf("Documento criado em: %s\n", initialCreationTime.Time().Format(time.RFC3339))
+
+	// Simulando uma modificação no documento algum tempo depois...
+	time.Sleep(10 * time.Millisecond)
+	doc.Content = "Conteúdo atualizado."
+	fmt.Println("Documento foi atualizado...")
+
+	// Verificando que o CreatedAt permanece o mesmo (imutabilidade conceitual)
+	fmt.Printf("Timestamp de criação APÓS atualização: %s\n", doc.CreatedAt.Time().Format(time.RFC3339))
+	fmt.Printf("O timestamp de criação mudou? %t\n", !initialCreationTime.Time().Equal(doc.CreatedAt.Time()))
+}
