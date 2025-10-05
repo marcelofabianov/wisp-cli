@@ -1,0 +1,12 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	date1, _ := wisp.ParseDate("2025-10-20")
+	date2 := date1.AddDays(10)
+
+	fmt.Printf("Data Inicial: %s\n", date1)
+	fmt.Printf("Data Final (após adicionar 10 dias): %s\n", date2)
+	fmt.Printf("A data inicial é anterior à final? %t\n", date1.Before(date2))
+}

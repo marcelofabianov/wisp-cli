@@ -15,15 +15,15 @@ O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito 
 - [x] 6. Money
 - [x] 7. Currency
 - [x] 8. Percentage
-- [ ] 9. Discount
-- [ ] 10. DiscountType
+- [x] 9. Discount
+- [x] 10. DiscountType
 
 ## Temporal
-- [ ] 11. Date
-- [ ] 12. DateRange
-- [ ] 13. BirthDate
-- [ ] 14. Day
-- [ ] 15. DayOfWeek
+- [x] 11. Date
+- [x] 12. DateRange
+- [x] 13. BirthDate
+- [x] 14. Day
+- [x] 15. DayOfWeek
 - [ ] 16. TimeOfDay
 - [ ] 17. TimeRange
 - [ ] 18. BusinessHours

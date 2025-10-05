@@ -1,0 +1,15 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	start, _ := wisp.ParseDate("2025-11-01")
+	end, _ := wisp.ParseDate("2025-11-30")
+	period, _ := wisp.NewDateRange(start, end)
+
+	checkDate, _ := wisp.ParseDate("2025-11-15")
+
+	fmt.Printf("Período de matrículas: %s\n", period)
+	fmt.Printf("A data %s está dentro do período? %t\n", checkDate, period.Contains(checkDate))
+	fmt.Printf("O período tem %d dias.\n", period.Days())
+}

@@ -1,0 +1,10 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	dia, _ := wisp.ParseDayOfWeek("Saturday")
+
+	fmt.Printf("O dia é: %s\n", dia)
+	fmt.Printf("É fim de semana? %t\n", dia.IsWeekend())
+}

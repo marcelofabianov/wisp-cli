@@ -1,0 +1,13 @@
+package main
+import "fmt"
+import "time"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	vencimento, _ := wisp.NewDay(10) // Dia 10 de cada mês
+	hoje := time.Date(2025, 10, 5, 0, 0, 0, 0, time.UTC)
+
+	fmt.Printf("Dia de vencimento: %d\n", vencimento.Int())
+	fmt.Printf("Hoje é dia: %d\n", hoje.Day())
+	fmt.Printf("Faltam %d dias para o vencimento.\n", vencimento.DaysUntil(hoje))
+}

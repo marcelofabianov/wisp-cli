@@ -1,0 +1,14 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	wisp.SetLegalAge(21) // Configura a maioridade para 21
+
+	birthDate, _ := wisp.ParseBirthDate("2005-10-20")
+	today := wisp.Today()
+
+	fmt.Printf("Data de Nascimento: %s\n", birthDate)
+	fmt.Printf("Idade hoje (%s): %d anos\n", today, birthDate.Age(today))
+	fmt.Printf("É maior de idade (21+)? %t\n", birthDate.IsOfAge(today))
+}
