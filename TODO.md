@@ -2,13 +2,13 @@
 
 O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito e url para cada type do pacote não esta finalizado ainda criamos um checklist para acompanhar a evolução.
 
-## Checklist conforme a v1.10.0
+## Checklist conforme a `v1.10.0` do `wisp`
 
 ## Identificadores
 - [x] 1. CPF
-- [ ] 2. CNPJ
+- [x] 2. CNPJ
 - [x] 3. UUID
-- [ ] 4. NullableUUID
+- [x] 4. NullableUUID
 - [ ] 5. Slug
 
 ## Financeiro

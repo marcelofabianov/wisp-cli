@@ -1,0 +1,44 @@
+package main
+
+import (
+	"fmt"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+// Em um domínio com Cursos e Alunos, um Aluno pode existir
+// sem estar matriculado em um curso.
+type Student struct {
+	ID       wisp.UUID
+	Name     string
+	CourseID wisp.NullableUUID // Chave estrangeira opcional
+}
+
+func main() {
+	// Cenário 1: Aluno sem curso
+	student1 := Student{
+		ID:   wisp.MustNewUUID(),
+		Name: "Ana",
+		// CourseID fica com seu valor zero, que é {Valid: false}
+	}
+
+	// Cenário 2: Aluno com curso
+	courseID := wisp.MustParseUUID("018f278d-a48f-7c2a-89a1-872f2e7a54a2")
+	student2 := Student{
+		ID:       wisp.MustNewUUID(),
+		Name:     "Bruno",
+		CourseID: wisp.NewNullableUUID(courseID),
+	}
+
+	processEnrollment(student1)
+	processEnrollment(student2)
+}
+
+func processEnrollment(s Student) {
+	fmt.Printf("Processando aluno: %s\n", s.Name)
+	if s.CourseID.Valid {
+		fmt.Printf("  -> Status: Matriculado no curso ID %s\n", s.CourseID.UUID)
+	} else {
+		fmt.Printf("  -> Status: Aguardando matrícula.\n")
+	}
+}
