@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func main() {
+	inputs := []string{
+		"Olá Mundo!",
+		"Geração de Leads É Importante",
+		"Go! Is it 100% awesome?",
+		"  muitos--espaços---e--hífens  ",
+		"!@#$", // Deve falhar
+	}
+
+	for _, input := range inputs {
+		slug, err := wisp.NewSlug(input)
+		if err != nil {
+			fmt.Printf("Input: '%s' -> ERRO: %v\n", input, err)
+			continue
+		}
+		fmt.Printf("Input: '%s' -> Slug: '%s'\n", input, slug)
+	}
+}
