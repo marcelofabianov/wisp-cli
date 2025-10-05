@@ -1,0 +1,33 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+// Uma entidade de domínio simples que embutiu a auditoria
+type Product struct {
+	Name string
+	wisp.Audit
+}
+
+func main() {
+	creator, _ := wisp.NewAuditUser("creator@example.com")
+	updater, _ := wisp.NewAuditUser("updater@example.com")
+
+	// 1. Criação
+	product := &Product{
+		Name:  "Produto A",
+		Audit: wisp.NewAudit(creator),
+	}
+	fmt.Printf("--- Criação ---\n")
+	fmt.Printf("Versão: %d, Criado por: %s\n", product.Audit.Version.Int(), product.Audit.CreatedBy)
+	fmt.Printf("Ativo? %t\n\n", product.Audit.IsActive())
+
+	// 2. Atualização
+	product.Audit.Touch(updater)
+	fmt.Printf("--- Atualização ---\n")
+	fmt.Printf("Versão: %d, Atualizado por: %s\n\n", product.Audit.Version.Int(), product.Audit.UpdatedBy)
+
+	// 3. Exclusão Lógica (Soft Delete)
+	product.Audit.Delete(creator)
+	fmt.Printf("--- Exclusão ---\n")
+	fmt.Printf("Excluído? %t, Ativo? %t\n", product.Audit.IsDeleted(), product.Audit.IsActive())
+}

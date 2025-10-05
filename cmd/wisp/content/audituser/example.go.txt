@@ -1,0 +1,23 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Criação a partir de um e-mail
+	user1, _ := wisp.NewAuditUser("marcelo@example.com")
+	fmt.Printf("Usuário 1: '%s'\n", user1)
+	fmt.Printf("  - É um e-mail? %t\n", user1.IsEmail())
+	fmt.Printf("  - É o sistema? %t\n\n", user1.IsSystem())
+
+	// Criação do usuário especial "system"
+	systemUser := wisp.NewSystemAuditUser()
+	fmt.Printf("Usuário 2: '%s'\n", systemUser)
+	fmt.Printf("  - É um e-mail? %t\n", systemUser.IsEmail())
+	fmt.Printf("  - É o sistema? %t\n\n", systemUser.IsSystem())
+
+	// Tentativa de criação com string inválida
+	_, err := wisp.NewAuditUser("apenas-um-nome")
+	if err != nil {
+		fmt.Printf("Erro esperado ao criar com 'apenas-um-nome':\n  -> %v\n", err)
+	}
+}

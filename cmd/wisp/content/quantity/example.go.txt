@@ -1,0 +1,33 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+const (
+	Unidade wisp.Unit = "UN"
+	Caixa   wisp.Unit = "CX"
+)
+
+func init() {
+	// Unidade (UN) não tem casas decimais, Caixa (CX) pode ter 2
+	wisp.RegisterUnits(Unidade, Caixa)
+	wisp.RegisterCurrencies(wisp.BRL)
+}
+
+func main() {
+	// Cria uma quantidade de 10 unidades (precisão 0)
+	qtdUnidades, _ := wisp.NewQuantityWithPrecision(10, Unidade, 0)
+	precoPorUnidade, _ := wisp.NewMoney(150, wisp.BRL) // R$ 1,50
+
+	// Cria uma quantidade de 1.5 caixas (precisão 2)
+	qtdCaixas, _ := wisp.NewQuantityWithPrecision(1.5, Caixa, 2)
+	precoPorCaixa, _ := wisp.NewMoney(1200, wisp.BRL) // R$ 12,00
+
+	// Calcula o total
+	totalUnidades, _ := qtdUnidades.MultiplyByMoney(precoPorUnidade) // 10 * 1.50 = 15.00
+	totalCaixas, _ := qtdCaixas.MultiplyByMoney(precoPorCaixa)     // 1.5 * 12.00 = 18.00
+	totalGeral, _ := totalUnidades.Add(totalCaixas)
+
+	fmt.Printf("Total de Unidades: %s\n", totalUnidades)
+	fmt.Printf("Total de Caixas: %s\n", totalCaixas)
+	fmt.Printf("Total Geral: %s\n", totalGeral)
+}
