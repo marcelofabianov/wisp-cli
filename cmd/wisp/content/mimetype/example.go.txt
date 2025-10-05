@@ -1,0 +1,22 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func init() {
+	wisp.RegisterMIMETypes("image/jpeg", "image/png", "application/pdf")
+}
+
+func main() {
+	mt, err := wisp.NewMIMEType("image/jpeg")
+	if err == nil {
+		fmt.Printf("MIME Type '%s' é válido.\n", mt)
+		fmt.Printf("  - Tipo Principal: %s\n", mt.Type())
+		fmt.Printf("  - Subtipo: %s\n\n", mt.SubType())
+	}
+
+	fmt.Println("Tentando criar com tipo não registrado ('video/mp4')...")
+	_, err = wisp.NewMIMEType("video/mp4")
+	if err != nil {
+		fmt.Printf("  -> Erro esperado: %v\n", err)
+	}
+}

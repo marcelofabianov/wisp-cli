@@ -1,0 +1,17 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	ipv4, _ := wisp.NewIPAddress("192.168.1.1")
+	ipv6, _ := wisp.NewIPAddress("2001:db8::8a2e:370:7334")
+
+	fmt.Printf("IP: %s, É IPv4? %t, É IPv6? %t\n", ipv4, ipv4.IsV4(), ipv4.IsV6())
+	fmt.Printf("IP: %s, É IPv4? %t, É IPv6? %t\n\n", ipv6, ipv6.IsV4(), ipv6.IsV6())
+
+	fmt.Println("Tentando criar com '999.999.999.999'...")
+	_, err := wisp.NewIPAddress("999.999.999.999")
+	if err != nil {
+		fmt.Printf("  -> Erro esperado: %v\n", err)
+	}
+}

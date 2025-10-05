@@ -1,0 +1,17 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	httpPort, _ := wisp.NewPortNumber(80)
+	apiPort, _ := wisp.NewPortNumber(8080)
+
+	fmt.Printf("Porta HTTP: %d\n", httpPort.Uint16())
+	fmt.Printf("Porta da API: %s\n\n", apiPort.String())
+
+	fmt.Println("Tentando criar com porta 0...")
+	_, err := wisp.NewPortNumber(0)
+	if err != nil {
+		fmt.Printf("  -> Erro esperado: %v\n", err)
+	}
+}

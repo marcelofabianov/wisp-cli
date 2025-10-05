@@ -1,0 +1,22 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func init() {
+	// Define as extensões permitidas no sistema
+	wisp.RegisterFileExtensions("pdf", "docx", "xml")
+}
+
+func main() {
+	ext, err := wisp.NewFileExtension(".PDF") // A normalização é automática
+	if err == nil {
+		fmt.Printf("Extensão '%s' válida e normalizada para '%s'\n", ".PDF", ext)
+		fmt.Printf("  - Com ponto: %s\n\n", ext.StringWithDot())
+	}
+
+	fmt.Println("Tentando criar com extensão não registrada ('zip')...")
+	_, err = wisp.NewFileExtension("zip")
+	if err != nil {
+		fmt.Printf("  -> Erro esperado: %v\n", err)
+	}
+}

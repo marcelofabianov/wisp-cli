@@ -1,0 +1,17 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Criação a partir de um código de 6 dígitos
+	cor1, _ := wisp.ParseColor("#FF9900")
+	fmt.Printf("Cor 1: %s\n", cor1.Hex())
+	r, g, b, _ := cor1.RGBA()
+	fmt.Printf("  - RGBA: (%d, %d, %d)\n\n", r, g, b)
+
+	// Criação a partir de um código de 3 dígitos (será expandido para #ff00cc)
+	cor2, _ := wisp.ParseColor("#f0c")
+	fmt.Printf("Cor 2: %s\n", cor2.Hex())
+	r, g, b, _ = cor2.RGBA()
+	fmt.Printf("  - RGBA: (%d, %d, %d)\n", r, g, b)
+}

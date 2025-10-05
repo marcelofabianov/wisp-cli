@@ -33,21 +33,21 @@ O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito 
 - [x] 22. NullableTime
 
 ### Contato e Endereçamento
-- [ ] 23. Email
-- [ ] 24. Phone
-- [ ] 25. CEP
-- [ ] 26. UF
+- [x] 23. Email
+- [x] 24. Phone
+- [x] 25. CEP
+- [x] 26. UF
 
 ### Geolocalização
-- [ ] 27. Latitude
-- [ ] 28. Longitude
+- [x] 27. Latitude
+- [x] 28. Longitude
 
 ### Rede e Tecnologia
-- [ ] 29. IPAddress
-- [ ] 30. PortNumber
-- [ ] 31. FileExtension
-- [ ] 32. MIMEType
-- [ ] 33. Color
+- [x] 29. IPAddress
+- [x] 30. PortNumber
+- [x] 31. FileExtension
+- [x] 32. MIMEType
+- [x] 33. Color
 
 ### Medidas e Quantidades
 - [ ] 34. Weight
