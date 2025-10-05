@@ -1,0 +1,28 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func main() {
+	// Para o exemplo, registramos a moeda BRL.
+	wisp.RegisterCurrencies(wisp.BRL)
+
+	precoOriginal, _ := wisp.NewMoney(20000, wisp.BRL) // R$ 200,00
+
+	// Cria uma porcentagem de 12.5%
+	percentual, err := wisp.NewPercentageFromFloat(0.125)
+	if err != nil {
+		log.Fatalf("Falha inesperada: %v", err)
+	}
+
+	// Calcula o valor do desconto
+	valorDoDesconto := percentual.ApplyTo(precoOriginal)
+
+	fmt.Printf("Preço Original: %s\n", precoOriginal.String())
+	fmt.Printf("Percentual: %s\n", percentual.String())
+	fmt.Printf("Valor do Desconto (12.5%% de R$ 200,00): %s\n", valorDoDesconto.String())
+}
