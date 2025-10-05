@@ -1,0 +1,36 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func main() {
+	// 1. Gerando um novo UUID v7
+	id, err := wisp.NewUUID()
+	if err != nil {
+		log.Fatalf("Falha ao gerar UUID: %v", err)
+	}
+
+	fmt.Printf("Novo UUID v7 gerado:\n")
+	fmt.Printf("  - Valor: %s\n", id.String())
+	fmt.Printf("  - É nulo? %t\n\n", id.IsNil())
+
+	// 2. Fazendo o parse de uma string de UUID válida
+	uuidString := "018f278d-a48f-7c2a-89a1-872f2e7a54a2"
+	parsedID, err := wisp.ParseUUID(uuidString)
+	if err != nil {
+		log.Fatalf("Falha ao fazer parse: %v", err)
+	}
+
+	fmt.Printf("Parse de uma string válida:\n")
+	fmt.Printf("  - Valor: %s\n\n", parsedID.String())
+
+	// 3. Verificando o valor nulo
+	nilID := wisp.Nil
+	fmt.Printf("Verificando o valor nulo:\n")
+	fmt.Printf("  - É nulo? %t\n", nilID.IsNil())
+	fmt.Printf("  - String: %s\n", nilID.String())
+}
