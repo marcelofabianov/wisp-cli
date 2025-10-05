@@ -1,0 +1,23 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Cria um objeto de preferências inicial
+	initialData := map[string]any{"theme": "light", "language": "pt-br"}
+	prefs1, _ := wisp.NewPreferences(initialData)
+
+	fmt.Println("--- Preferências Iniciais ---")
+	fmt.Printf("Tema: %v\n\n", prefs1.Data()["theme"])
+
+	// Atualiza uma preferência de forma imutável
+	// O método Set retorna uma NOVA instância de Preferences
+	prefs2 := prefs1.Set("theme", "dark").Set("notifications", true)
+
+	fmt.Println("--- Após Atualizações ---")
+	fmt.Println("Preferências Originais (prefs1) não foram alteradas:")
+	fmt.Printf("  Dados: %v\n\n", prefs1.Data())
+
+	fmt.Println("Novas Preferências (prefs2) contêm as mudanças:")
+	fmt.Printf("  Dados: %v\n", prefs2.Data())
+}

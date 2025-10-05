@@ -64,12 +64,12 @@ O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito 
 
 ### Tipos Genéricos e Extensíveis
 - [x] 43. Role
-- [ ] 44. Status
-- [ ] 45. Flag[T]
-- [ ] 46. Preferences
+- [x] 44. Status
+- [x] 45. Flag[T]
+- [x] 46. Preferences
 
 ### Tipos de Validação e Controle
-- [ ] 47. BoundedValue
+- [x] 47. BoundedValue
 - [ ] 48. MinValue
 - [ ] 49. RangedValue
 

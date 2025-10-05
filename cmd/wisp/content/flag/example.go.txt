@@ -1,0 +1,26 @@
+package main
+import "fmt"
+import "github.com/marcelofabianov/wisp"
+
+const (
+	StatusPublished = "published"
+	StatusDraft     = "draft"
+)
+
+func main() {
+	// Cria uma flag de status, iniciando como "draft"
+	// O estado primário é "published", o secundário é "draft"
+	status, _ := wisp.NewFlag(StatusDraft, StatusPublished, StatusDraft)
+
+	fmt.Println("--- Estado Inicial ---")
+	fmt.Printf("Valor atual: %s\n", status.Get())
+	fmt.Printf("Está no estado primário ('published')? %t\n", status.IsPrimary())
+	fmt.Printf("O valor é 'draft'? %t\n\n", status.Is(StatusDraft))
+
+	// Tentativa de criar com um estado inválido
+	fmt.Println("--- Tentativa de Criação Inválida ---")
+	_, err := wisp.NewFlag("archived", StatusPublished, StatusDraft)
+	if err != nil {
+		fmt.Printf("Erro esperado recebido: %v\n", err)
+	}
+}

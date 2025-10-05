@@ -1,0 +1,27 @@
+package main
+import "fmt"
+import "errors"
+import "github.com/marcelofabianov/wisp"
+
+func main() {
+	// Cria um estoque com 95 de 100 itens de capacidade
+	estoque, _ := wisp.NewBoundedValue(95, 100)
+
+	fmt.Printf("Estoque inicial: %d/%d\n", estoque.Current(), estoque.Max())
+	fmt.Printf("Espaço disponível: %d\n\n", estoque.AvailableSpace())
+
+	// 1. Tenta adicionar 5 itens (sucesso)
+	fmt.Println("Adicionando 5 itens...")
+	estoque, _ = estoque.Add(5)
+	fmt.Printf("Estoque atual: %d/%d\n", estoque.Current(), estoque.Max())
+	fmt.Printf("Está cheio? %t\n\n", estoque.IsFull())
+
+	// 2. Tenta adicionar mais 1 item (falha)
+	fmt.Println("Adicionando mais 1 item...")
+	_, err := estoque.Add(1)
+	if err != nil {
+		if errors.Is(err, wisp.ErrValueExceedsMax) {
+			fmt.Println("  -> Erro esperado: Capacidade máxima excedida!")
+		}
+	}
+}
