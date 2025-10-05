@@ -1,0 +1,56 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+	"time"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+// Task representa uma tarefa que pode ou não ter sido completada.
+type Task struct {
+	ID          wisp.UUID
+	Description string
+	CompletedAt wisp.NullableTime // O timestamp de conclusão é opcional.
+}
+
+// NewTask cria uma nova tarefa, sempre com a data de conclusão nula.
+func NewTask(description string) *Task {
+	return &Task{
+		ID:          wisp.MustNewUUID(),
+		Description: description,
+		CompletedAt: wisp.EmptyNullableTime, // Começa como nulo/inválido.
+	}
+}
+
+// Complete marca a tarefa como concluída, definindo o timestamp.
+func (t *Task) Complete() {
+	t.CompletedAt = wisp.NewNullableTime(time.Now().UTC())
+}
+
+func main() {
+	task := NewTask("Implementar feature X")
+
+	fmt.Println("--- Tarefa Criada ---")
+	fmt.Printf("Descrição: %s\n", task.Description)
+	fmt.Printf("A tarefa foi completada? %t\n", !task.CompletedAt.IsZero())
+
+	// Serializando para JSON no estado inicial (nulo)
+	jsonInitial, _ := json.Marshal(task)
+	fmt.Printf("JSON Inicial: %s\n\n", string(jsonInitial))
+
+	// Completando a tarefa
+	task.Complete()
+
+	fmt.Println("--- Tarefa Completa ---")
+	fmt.Printf("A tarefa foi completada? %t\n", !task.CompletedAt.IsZero())
+	if !task.CompletedAt.IsZero() {
+		fmt.Printf("Data de conclusão: %s\n", task.CompletedAt.Time.Format(time.RFC3339))
+	}
+
+	// Serializando para JSON no estado final (com valor)
+	jsonFinal, _ := json.Marshal(task)
+	fmt.Printf("JSON Final: %s\n", string(jsonFinal))
+}

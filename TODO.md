@@ -24,13 +24,13 @@ O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito 
 - [x] 13. BirthDate
 - [x] 14. Day
 - [x] 15. DayOfWeek
-- [ ] 16. TimeOfDay
-- [ ] 17. TimeRange
-- [ ] 18. BusinessHours
-- [ ] 19. Timezone
-- [ ] 20. CreatedAt
-- [ ] 21. UpdatedAt
-- [ ] 22. NullableTime
+- [x] 16. TimeOfDay
+- [x] 17. TimeRange
+- [x] 18. BusinessHours
+- [x] 19. Timezone
+- [x] 20. CreatedAt
+- [x] 21. UpdatedAt
+- [x] 22. NullableTime
 
 ### Contato e Endereçamento
 - [ ] 23. Email
