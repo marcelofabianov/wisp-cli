@@ -1,0 +1,32 @@
+package main
+
+import (
+	"fmt"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func main() {
+	wisp.RegisterCurrencies(wisp.BRL)
+	precoBase, _ := wisp.NewMoney(10000, wisp.BRL) // R$ 100,00
+
+	// Cenário 1: Desconto Fixo de R$ 10,00
+	valorFixo, _ := wisp.NewMoney(1000, wisp.BRL)
+	descontoFixo, _ := wisp.NewFixedDiscount(valorFixo)
+	precoFinalFixo, _ := descontoFixo.ApplyTo(precoBase)
+
+	fmt.Printf("--- Desconto Fixo ---\n")
+	fmt.Printf("Preço Base: %s\n", precoBase.String())
+	fmt.Printf("Desconto Aplicado: %s\n", descontoFixo.String())
+	fmt.Printf("Preço Final: %s\n\n", precoFinalFixo.String())
+
+	// Cenário 2: Desconto Percentual de 15%
+	percentual, _ := wisp.NewPercentageFromFloat(0.15)
+	descontoPercentual, _ := wisp.NewPercentageDiscount(percentual)
+	precoFinalPercentual, _ := descontoPercentual.ApplyTo(precoBase)
+
+	fmt.Printf("--- Desconto Percentual ---\n")
+	fmt.Printf("Preço Base: %s\n", precoBase.String())
+	fmt.Printf("Desconto Aplicado: %s\n", descontoPercentual.String())
+	fmt.Printf("Preço Final: %s\n", precoFinalPercentual.String())
+}

@@ -9,12 +9,12 @@ O projeto de criar uma ferramenta cli para `wisp` apresentar exemplos, conceito 
 - [x] 2. CNPJ
 - [x] 3. UUID
 - [x] 4. NullableUUID
-- [ ] 5. Slug
+- [x] 5. Slug
 
 ## Financeiro
 - [x] 6. Money
-- [ ] 7. Currency
-- [ ] 8. Percentage
+- [x] 7. Currency
+- [x] 8. Percentage
 - [ ] 9. Discount
 - [ ] 10. DiscountType
 
