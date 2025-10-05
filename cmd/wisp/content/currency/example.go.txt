@@ -1,0 +1,31 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/marcelofabianov/wisp"
+)
+
+func init() {
+	// Em uma aplicação real, você registra todas as moedas que seu sistema suporta.
+	wisp.RegisterCurrencies("BRL", "USD", "EUR")
+}
+
+func main() {
+	// Exemplo de criação com uma moeda válida e registrada
+	brl, err := wisp.NewCurrency("brl") // A normalização para maiúsculas é automática
+	if err != nil {
+		log.Fatalf("Falha inesperada: %v", err)
+	}
+
+	fmt.Printf("Moeda válida criada: %s\n", brl)
+	fmt.Printf("A moeda '%s' é válida? %t\n\n", brl, brl.IsValid())
+
+	// Exemplo de tentativa de criação com uma moeda não registrada
+	fmt.Println("Tentando criar com uma moeda não registrada ('JPY')...")
+	_, err = wisp.NewCurrency("JPY")
+	if err != nil {
+		fmt.Printf("  -> Erro esperado recebido: %v\n", err)
+	}
+}
